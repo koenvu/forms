@@ -1,0 +1,27 @@
+{
+  "name": "koenvu/forms",
+  "description": "A simple forms package",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Koen van Urk",
+      "email": "git@ehlo-localhost.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.9",
+    "illuminate/config": "~5.0",
+    "illuminate/support": "~5.0",
+    "illuminate/view": "~5.0"
+  },
+  "require-dev": {
+    "mockery/mockery": "~0.9.1",
+    "phpunit/phpunit": "~5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Koenvu\\Forms\\": "src/Forms/"
+    }
+  },
+  "minimum-stability": "dev"
+}
