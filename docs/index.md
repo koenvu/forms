@@ -1,1 +1,3 @@
-Check out the [quickstart](quickstart.md).
+# Welcome to the Forms documentation!
+
+To get started, visit the [quickstart](quickstart.md) section. It will show you how to install the forms package and give some background information. When you are all set, visit the documentation for the [elementary trait](using_the_elementary_trait.md). It will give information on the intended use of this trait and suggests naming convention to use in your project.
