@@ -12,4 +12,4 @@ Install through composer:
 
 `composer require koenvu/forms`
 
-** To be continued! **
+**To be continued!**
