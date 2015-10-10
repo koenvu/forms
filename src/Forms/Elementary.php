@@ -15,7 +15,7 @@ trait Elementary
      */
     public function set($name, $value)
     {
-        $this->options[$name] = $value;
+        array_set($this->options, $name, $value);
         return $this;
     }
 

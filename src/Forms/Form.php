@@ -2,7 +2,7 @@
 
 namespace Koenvu\Forms;
 
-use View;
+use Koenvu\Forms\Helpers\Valuable;
 use Illuminate\Contracts\View\Factory;
 use Koenvu\Forms\Contracts\FormElement;
 
@@ -11,7 +11,7 @@ use Koenvu\Forms\Contracts\FormElement;
  */
 class Form implements FormElement
 {
-    use Elementary;
+    use Elementary, Valuable;
     
     protected $viewFactory;
 
@@ -23,6 +23,15 @@ class Form implements FormElement
     public function __construct(Factory $viewFactory)
     {
         $this->viewFactory = $viewFactory;
+        $this->init();
+    }
+    
+    /**
+     * Initializes the form
+     */
+    protected function init()
+    {
+        
     }
 
     /**
@@ -47,6 +56,9 @@ class Form implements FormElement
      */
     public function render()
     {
+        // Fill all fields right before the render
+        $this->fillValues();
+        
         $fieldContents = '';
         foreach ($this->fields as $field) {
             $fieldContents .= $field->render();

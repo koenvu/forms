@@ -9,3 +9,11 @@ php:
 
 install:
   - travis_retry composer install --no-interaction
+
+after_script:
+  - vendor/bin/test-reporter  
+
+addons:
+  code_climate:
+    repo_token:
+      secure: "ShKKv1opfm5VcPa1OWycKQ/c/ZUqS9NW4wub+3FogP6ikYZxgZ85Hc0hJUEYizbgfLWqajCftJTa6y7VZJ4awMaXMiEtsxhCx0BVqVvOXjsd6xOSqwCq6677ZZJ3bKA30WRFhbMEiGPvxDB1RC2WACJ2WhQRKd+IWwl7s/nVv+wtTuTHbXxhn4VFdsMt7pb0e7vNOPVEBlc5Eua9XwnB9bsjexP7wi6jhFPX4UbX3CmwYOSDBmDaPn2pVrini91KEfo/E90rmnQWLfgtYY/O5XZoPN2OAIF86f5hRANQT7RSeYYwPiNzdaZrXulmLHZY1i+3EoC0zcdSS3f4YOWufEmEX5DdFAR/aFYynSizRGFMmJTvGl7gmCO5BFmgJE2KmJi4xR4OAtPwAyqO+nO+W7qKQ1BaSGACDv9fqjM1gZJI9nHxupl/EmBlNssiej7yVjVoLNABtrc/UOA4TVJu8R9KBijGHgdyrQnKkpaJ+AaXOMNy6TL7MCw+BPNyLJ6jyM5pT4qvnN9JWJarMadkfvBnp72oZnbjcvXZerCn5h72BXM1pkB2wWCLoc8v79FDVm51TRcica9qoAKk4wHqk8eUpPZuVXsyv+GakkMwJawHKwcCQMrS96ziru0eLzm098F03i4YaCzpnARgFcbZDEoTkHQfSnnKbmraJh5pZcE="
