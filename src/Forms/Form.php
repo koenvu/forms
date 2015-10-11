@@ -7,6 +7,7 @@ use Koenvu\Forms\Components\Valuable;
 use Illuminate\Contracts\View\Factory;
 use Koenvu\Forms\Components\Elementary;
 use Koenvu\Forms\Contracts\FormElement;
+use Illuminate\Contracts\Container\Container;
 
 /**
  * Easy form builder based on blade templates
@@ -21,6 +22,11 @@ class Form implements FormElement
     protected $viewFactory;
 
     /**
+     * @var Container
+     */
+    protected $container;
+
+    /**
      * @var array
      */
     protected $fields = [];
@@ -30,9 +36,10 @@ class Form implements FormElement
      *
      * @param Factory $viewFactory
      */
-    public function __construct(Factory $viewFactory)
+    public function __construct(Factory $viewFactory, Container $container)
     {
         $this->viewFactory = $viewFactory;
+        $this->container = $container;
     }
 
     /**
@@ -43,6 +50,20 @@ class Form implements FormElement
     public function addField(FormElement $field)
     {
         $this->fields[] = $field;
+    }
+
+    /**
+     * Instantiate a field and add it to the form
+     *
+     * @param string $class
+     * @param array $parameters
+     * @return mixed Instance of the specified class
+     */
+    public function createField($class, $parameters = [])
+    {
+        $field = $this->container->make($class, $parameters);
+        $this->addField($field);
+        return $field;
     }
 
     /**

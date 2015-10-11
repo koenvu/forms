@@ -15,6 +15,11 @@ class FormTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        $this->container = $this->getMockBuilder('Illuminate\Container\Container')
+                                ->disableOriginalConstructor()
+                                ->setMethods(['make'])
+                                ->getMock();
+
         $this->view = $this->getMockBuilder('Illuminate\View\View')
                            ->disableOriginalConstructor()
                            ->setMethods(['render'])
@@ -41,7 +46,7 @@ class FormTest extends PHPUnit_Framework_TestCase
 
         $this->view->method('render')->willReturn('some output...hello');
 
-        $form = new Form($this->factory);
+        $form = new Form($this->factory, $this->container);
         $form->addField($fieldA);
         $form->addField($fieldB);
 
@@ -51,10 +56,30 @@ class FormTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testCreatingField()
+    {
+        $field = $this->getMockBuilder('Koenvu\FormTests\Stubs\TestableField')
+                      ->setMethods(['render'])
+                      ->disableOriginalConstructor()
+                      ->setMockClassName('MockingField')
+                      ->getMockForAbstractClass();
+        $field->set('field.name', 'somename');
+
+        $this->container->method('make')->willReturn($field);
+
+        $form = new Form($this->factory, $this->container);
+        $form->createField(MockingField::class);
+
+        // When the form renders, we expect the field to get a render call as well
+        $field->expects($this->once())->method('render');
+
+        $form->render();
+    }
+
     public function testFillingValues()
     {
         $_GET['somename'] = 'a value';
-        $form = new Form($this->factory);
+        $form = new Form($this->factory, $this->container);
         $field = $this->getMockForAbstractClass('Koenvu\FormTests\Stubs\TestableField');
         $field->set('field.name', 'somename');
 
@@ -66,7 +91,7 @@ class FormTest extends PHPUnit_Framework_TestCase
 
     public function testEnhancingLabels()
     {
-        $form = new Form($this->factory);
+        $form = new Form($this->factory, $this->container);
         $field = $this->getMockForAbstractClass('Koenvu\FormTests\Stubs\TestableField');
         $field->set('field.name', 'somename');
         $field->set('field.id', 'someid');
