@@ -63,12 +63,18 @@ class Form implements FormElement
      *
      * @param string $class
      * @param array $parameters
+     * @param array $options
      * @return mixed Instance of the specified class
      */
-    public function createField($class, $parameters = [])
+    public function createField($class, $fieldOptions = [], $parameters = [])
     {
         $field = $this->container->make($class, $parameters);
         $this->addField($field);
+
+        foreach ($fieldOptions as $option => $value) {
+            $field->set($option, $value);
+        }
+
         return $field;
     }
 

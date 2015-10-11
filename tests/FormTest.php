@@ -63,15 +63,16 @@ class FormTest extends PHPUnit_Framework_TestCase
                       ->disableOriginalConstructor()
                       ->setMockClassName('MockingField')
                       ->getMockForAbstractClass();
-        $field->set('field.name', 'somename');
 
         $this->container->method('make')->willReturn($field);
 
         $form = new Form($this->factory, $this->container);
-        $form->createField(MockingField::class);
+        $returnedField = $form->createField(MockingField::class, ['test' => 'val']);
 
         // When the form renders, we expect the field to get a render call as well
-        $field->expects($this->once())->method('render');
+        $returnedField->expects($this->once())->method('render');
+
+        $this->assertEquals('val', $returnedField->get('test'));
 
         $form->render();
     }
