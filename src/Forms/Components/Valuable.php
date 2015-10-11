@@ -1,10 +1,10 @@
 <?php
 
-namespace Koenvu\Forms\Helpers;
+namespace Koenvu\Forms\Components;
 
 trait Valuable
 {
-    
+
     /**
      * Fill the field.value option of a field based
      */

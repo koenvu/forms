@@ -11,6 +11,9 @@ $options = [
     'field' => [
         'value' => 'Test',
         'name'  => 'testing'
+    ],
+    'label' => [
+    	'text'  => 'Test'
     ]
 ];
 

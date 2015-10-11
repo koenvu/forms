@@ -1,6 +1,6 @@
 <?php
 
-namespace Koenvu\Forms;
+namespace Koenvu\Forms\Components;
 
 trait Elementary
 {
@@ -8,7 +8,7 @@ trait Elementary
 
     /**
      * Set an option
-     * 
+     *
      * @param string $name
      * @param mixed $value
      * @return $this Must return the object itself for chaining
@@ -21,7 +21,7 @@ trait Elementary
 
     /**
      * Retrieve an option
-     * 
+     *
      * @param string $name
      * @param mixed $default
      * @return mixed $value
@@ -33,7 +33,7 @@ trait Elementary
 
     /**
      * Retrieve an option and remove it from the options array
-     * 
+     *
      * @param string $name
      * @param mixed $default
      * @return mixed $value
@@ -49,7 +49,7 @@ trait Elementary
      * When the value corresponding to attr is an array, this function should
      * generate a set of attributes corresponding to the keys of the array.
      * Otherwise it will generate HTML code for the requested attribute.
-     * 
+     *
      * @param  string $name
      * @return string The composed attribute(s)
      */
@@ -62,11 +62,11 @@ trait Elementary
             if ($value !== null) {
                 return " {$name}=\"" . e($value) . "\"";
             }
-            
+
             // The value must've been null, so lets just return an empty string
             return '';
         }
-        
+
         // If the value is an array we will, non-recursively,
         // loop through the array. For every key found, an
         // attribute with its value will be generated.

@@ -2,8 +2,9 @@
 
 namespace Koenvu\Forms;
 
-use Koenvu\Forms\Helpers\Valuable;
+use Koenvu\Forms\Components\Valuable;
 use Illuminate\Contracts\View\Factory;
+use Koenvu\Forms\Components\Elementary;
 use Koenvu\Forms\Contracts\FormElement;
 
 /**
@@ -12,12 +13,12 @@ use Koenvu\Forms\Contracts\FormElement;
 class Form implements FormElement
 {
     use Elementary, Valuable;
-    
+
     protected $viewFactory;
 
     /**
      * Create a new instance and inject a view factory
-     * 
+     *
      * @param Factory $viewFactory
      */
     public function __construct(Factory $viewFactory)
@@ -25,13 +26,13 @@ class Form implements FormElement
         $this->viewFactory = $viewFactory;
         $this->init();
     }
-    
+
     /**
      * Initializes the form
      */
     protected function init()
     {
-        
+
     }
 
     /**
@@ -41,7 +42,7 @@ class Form implements FormElement
 
     /**
      * Add a new field to the form
-     * 
+     *
      * @param FormField $field
      */
     public function addField(FormElement $field)
@@ -58,12 +59,12 @@ class Form implements FormElement
     {
         // Fill all fields right before the render
         $this->fillValues();
-        
+
         $fieldContents = '';
         foreach ($this->fields as $field) {
             $fieldContents .= $field->render();
         }
-        
+
         return $this->viewFactory->make('form', ['fields' => $fieldContents])->render();
     }
 }
