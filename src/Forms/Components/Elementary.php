@@ -32,6 +32,16 @@ trait Elementary
     }
 
     /**
+     * Check if the element has a given option
+     *
+     * @param string $name
+     */
+    public function has($name)
+    {
+        return array_has($this->options, $name);
+    }
+
+    /**
      * Retrieve an option and remove it from the options array
      *
      * @param string $name

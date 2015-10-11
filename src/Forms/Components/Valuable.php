@@ -2,18 +2,23 @@
 
 namespace Koenvu\Forms\Components;
 
+/**
+ * Component to fill field values based on request parameters
+ */
 trait Valuable
 {
 
     /**
-     * Fill the field.value option of a field based
+     * Fill the field.value option of a field
+     *
+     * @param [FormElement] $fields Array of FormElement objects
      */
-    public function fillValues()
+    public function fillValues($fields = [])
     {
         $inputParameters = $_POST + $_GET;
-        foreach ($this->fields as $field)
+        foreach ($fields as $field)
         {
-            if (($name = $field->get('name')) && isset($inputParameters[$name]))
+            if (($name = $field->get('field.name')) && isset($inputParameters[$name]))
             {
                 $field->set('field.value', $inputParameters[$name]);
             }

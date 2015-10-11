@@ -2,6 +2,7 @@
 
 namespace Koenvu\Forms;
 
+use Koenvu\Forms\Components\Labeller;
 use Koenvu\Forms\Components\Valuable;
 use Illuminate\Contracts\View\Factory;
 use Koenvu\Forms\Components\Elementary;
@@ -12,7 +13,7 @@ use Koenvu\Forms\Contracts\FormElement;
  */
 class Form implements FormElement
 {
-    use Elementary, Valuable;
+    use Elementary, Valuable, Labeller;
 
     protected $viewFactory;
 
@@ -58,7 +59,10 @@ class Form implements FormElement
     public function render()
     {
         // Fill all fields right before the render
-        $this->fillValues();
+        $this->fillValues($this->fields);
+
+        // Generate label tags
+        $this->enhanceLabels($this->fields, true);
 
         $fieldContents = '';
         foreach ($this->fields as $field) {

@@ -1,16 +1,10 @@
 <?php
 
-use Koenvu\Forms\Components\Elementary;
-
-class TestClass {
-    use Elementary;
-}
-
 class ElementaryTest extends PHPUnit_Framework_TestCase
 {
     public function testSettingAndGettingAnOption()
     {
-        $elementary = new TestClass();
+        $elementary = $this->getMockForTrait('Koenvu\Forms\Components\Elementary');
         $elementary->set('test', 'SomeValue');
         $elementary->set('hey', 'Hello!');
 
@@ -18,9 +12,21 @@ class ElementaryTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('SomeValue', $elementary->get('test'));
     }
 
+    public function testHasAnOption()
+    {
+        $elementary = $this->getMockForTrait('Koenvu\Forms\Components\Elementary');
+        $elementary->set('test', 'SomeValue');
+        $elementary->set('multi', ['dimensional' => 'thing']);
+
+        $this->assertTrue($elementary->has('test'));
+        $this->assertFalse($elementary->has('random'));
+        $this->assertTrue($elementary->has('multi.dimensional'));
+        $this->assertFalse($elementary->has('something.dimensional'));
+    }
+
     public function testSettingGettingAndPullingAnOption()
     {
-        $elementary = new TestClass();
+        $elementary = $this->getMockForTrait('Koenvu\Forms\Components\Elementary');
         $elementary->set('test', 'SomeValue');
 
         $this->assertEquals('SomeValue', $elementary->get('test'));
@@ -31,14 +37,14 @@ class ElementaryTest extends PHPUnit_Framework_TestCase
 
     public function testGettingOptionWithDefault()
     {
-        $elementary = new TestClass();
+        $elementary = $this->getMockForTrait('Koenvu\Forms\Components\Elementary');
         $this->assertEquals('Default', $elementary->get('random-key', 'Default'));
         $this->assertNull($elementary->get('another-key'));
     }
 
     public function testGettingSingleAttribute()
     {
-        $elementary = new TestClass();
+        $elementary = $this->getMockForTrait('Koenvu\Forms\Components\Elementary');
         $elementary->set('value', 'Special&Case"');
         $this->assertRegExp('/value\s*=\s*([\'"])Special&amp;Case&quot;\1/', $elementary->attr('value'));
         $this->assertRegExp('/random\s*=\s*([\'"])Default\1/', $elementary->attr('random', 'Default'));
@@ -48,7 +54,7 @@ class ElementaryTest extends PHPUnit_Framework_TestCase
 
     public function testGettingMultipleAttribute()
     {
-        $elementary = new TestClass();
+        $elementary = $this->getMockForTrait('Koenvu\Forms\Components\Elementary');
         $elementary->set('wrapper', [
             'value' => 'SomeValue',
             'greet' => 'Hello'

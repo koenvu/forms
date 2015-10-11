@@ -62,11 +62,24 @@ class FormTest extends PHPUnit_Framework_TestCase
         $_GET['somename'] = 'a value';
         $form = new Form($this->factory);
         $field = new TestField();
-        $field->set('name', 'somename');
+        $field->set('field.name', 'somename');
 
         $form->addField($field);
         $form->render();
 
         $this->assertRegExp('/value\s*=\s*([\'"])a value\1/', $field->attr('field'));
+    }
+
+    public function testEnhancingLabels()
+    {
+        $form = new Form($this->factory);
+        $field = new TestField();
+        $field->set('field.name', 'somename');
+        $field->set('field.id', 'someid');
+
+        $form->addField($field);
+        $form->render();
+
+        $this->assertRegExp('/for\s*=\s*([\'"])someid\1/', $field->attr('label.for'));
     }
 }
