@@ -10,7 +10,9 @@ php:
 install:
   - travis_retry composer install --no-interaction
 
-script: phpunit --coverage-clover=build/logs/clover.xml
+script:
+  - ./vendor/bin/phpcs --warning-severity=6 --standard=PSR2 *.php src/Forms tests/
+  - phpunit --coverage-clover=build/logs/clover.xml
 
 after_script:
   - vendor/bin/test-reporter  

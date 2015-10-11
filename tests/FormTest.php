@@ -1,18 +1,12 @@
 <?php
 
+namespace Koenvu\FormTests;
+
 use Koenvu\Forms\Form;
+use PHPUnit_Framework_TestCase;
 use Koenvu\Forms\Components\Valuable;
 use Koenvu\Forms\Components\Elementary;
 use Koenvu\Forms\Contracts\FormElement;
-
-class TestField implements FormElement {
-    use Elementary, Valuable;
-
-    public function render()
-    {
-        return '';
-    }
-}
 
 class FormTest extends PHPUnit_Framework_TestCase
 {
@@ -61,7 +55,7 @@ class FormTest extends PHPUnit_Framework_TestCase
     {
         $_GET['somename'] = 'a value';
         $form = new Form($this->factory);
-        $field = new TestField();
+        $field = $this->getMockForAbstractClass('Koenvu\FormTests\Stubs\TestableField');
         $field->set('field.name', 'somename');
 
         $form->addField($field);
@@ -73,7 +67,7 @@ class FormTest extends PHPUnit_Framework_TestCase
     public function testEnhancingLabels()
     {
         $form = new Form($this->factory);
-        $field = new TestField();
+        $field = $this->getMockForAbstractClass('Koenvu\FormTests\Stubs\TestableField');
         $field->set('field.name', 'somename');
         $field->set('field.id', 'someid');
 

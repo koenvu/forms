@@ -1,5 +1,9 @@
 <?php
 
+namespace Koenvu\FormTests\Components;
+
+use PHPUnit_Framework_TestCase;
+
 class ElementaryTest extends PHPUnit_Framework_TestCase
 {
     public function testSettingAndGettingAnOption()

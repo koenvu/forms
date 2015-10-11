@@ -1,6 +1,8 @@
 <?php
 
-use Koenvu\Forms\Components\Valuable;
+namespace Koenvu\FormTests\Components;
+
+use PHPUnit_Framework_TestCase;
 
 class ValuableTest extends PHPUnit_Framework_TestCase
 {
@@ -10,7 +12,7 @@ class ValuableTest extends PHPUnit_Framework_TestCase
         $_GET['somename'] = 'a value';
 
         $valuable = $this->getMockForTrait('Koenvu\Forms\Components\Valuable');
-        $field = $this->getMockForAbstractClass('TestableField');
+        $field = $this->getMockForAbstractClass('Koenvu\FormTests\Stubs\TestableField');
         $field->set('field.name', 'somename');
 
         $valuable->fillValues([$field]);
@@ -21,7 +23,7 @@ class ValuableTest extends PHPUnit_Framework_TestCase
     public function testFillingValueWithoutName()
     {
         $valuable = $this->getMockForTrait('Koenvu\Forms\Components\Valuable');
-        $field = $this->getMockForAbstractClass('TestableField');
+        $field = $this->getMockForAbstractClass('Koenvu\FormTests\Stubs\TestableField');
 
         $valuable->fillValues([$field]);
 

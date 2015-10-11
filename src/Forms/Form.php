@@ -15,7 +15,15 @@ class Form implements FormElement
 {
     use Elementary, Valuable, Labeller;
 
+    /**
+     * @var Factory
+     */
     protected $viewFactory;
+
+    /**
+     * @var array
+     */
+    protected $fields = [];
 
     /**
      * Create a new instance and inject a view factory
@@ -26,11 +34,6 @@ class Form implements FormElement
     {
         $this->viewFactory = $viewFactory;
     }
-
-    /**
-     * @var array
-     */
-    protected $fields = [];
 
     /**
      * Add a new field to the form

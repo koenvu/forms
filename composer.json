@@ -17,11 +17,13 @@
   "require-dev": {
     "mockery/mockery": "~0.9.1",
     "phpunit/phpunit": "~4.0",
-    "codeclimate/php-test-reporter": "dev-master"
+    "codeclimate/php-test-reporter": "dev-master",
+    "squizlabs/php_codesniffer": "*"
   },
   "autoload": {
     "psr-4": {
-      "Koenvu\\Forms\\": "src/Forms/"
+      "Koenvu\\Forms\\": "src/Forms/",
+      "Koenvu\\FormTests\\": "tests/"
     }
   },
   "minimum-stability": "dev"
