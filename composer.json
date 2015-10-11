@@ -22,7 +22,11 @@
   },
   "autoload": {
     "psr-4": {
-      "Koenvu\\Forms\\": "src/Forms/",
+      "Koenvu\\Forms\\": "src/Forms/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
       "Koenvu\\FormTests\\": "tests/"
     }
   },
