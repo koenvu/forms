@@ -25,15 +25,6 @@ class Form implements FormElement
     public function __construct(Factory $viewFactory)
     {
         $this->viewFactory = $viewFactory;
-        $this->init();
-    }
-
-    /**
-     * Initializes the form
-     */
-    protected function init()
-    {
-
     }
 
     /**
