@@ -98,7 +98,7 @@ class Form implements FormElement
         $viewName = $this->get('template_prefix', '') . $this->get('template', 'form');
 
         // Make and render the form view
-        $view = $this->viewFactory->make('form', [
+        $view = $this->viewFactory->make($viewName, [
             'fields' => $fieldContents,
             'form'   => $this
         ]);
