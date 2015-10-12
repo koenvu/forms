@@ -90,28 +90,28 @@ class FormTest extends PHPUnit_Framework_TestCase
         $this->assertRegExp('/value\s*=\s*([\'"])a value\1/', $field->attr('field'));
     }
 
-    // public function testMirroringOptions()
-    // {
-    //     $form = new Form($this->factory, $this->container);
-    //     $fieldA = $this->getMockForAbstractClass('Koenvu\FormTests\Stubs\TestableField');
-    //     $fieldB = $this->getMockForAbstractClass('Koenvu\FormTests\Stubs\TestableField');
+    public function testPropagatingOptions()
+    {
+        $form = new Form($this->factory, $this->container);
+        $fieldA = $this->getMockForAbstractClass('Koenvu\FormTests\Stubs\TestableField');
+        $fieldB = $this->getMockForAbstractClass('Koenvu\FormTests\Stubs\TestableField');
 
-    //     $form->addField($fieldA);
-    //     $form->addField($fieldB);
+        $form->addField($fieldA);
+        $form->addField($fieldB);
 
-    //     // template_prefix is a mirror option in form and should be copied
-    //     $form->set('template_prefix', 'someprefix::');
+        // template_prefix is a mirror option in form and should be copied
+        $form->set('template_prefix', 'someprefix::');
 
-    //     // non_mirror is not a mirror option in form and should not be copied
-    //     $form->set('non_mirror', 'hello');
+        // non_mirror is not a mirror option in form and should not be copied
+        $form->set('non_mirror', 'hello');
 
-    //     // rendering will trigger the mirror functionality
-    //     $form->render();
+        // rendering will trigger the mirror functionality
+        $form->render();
 
-    //     $this->assertEquals('someprefix::', $fieldA->get('template_prefix'));
-    //     $this->assertEquals('someprefix::', $fieldB->get('template_prefix'));
+        $this->assertEquals('someprefix::', $fieldA->get('template_prefix'));
+        $this->assertEquals('someprefix::', $fieldB->get('template_prefix'));
 
-    //     $this->assertNull($fieldA->get('non_mirror'));
-    //     $this->assertNull($fieldB->get('non_mirror'));
-    // }
+        $this->assertNull($fieldA->get('non_mirror'));
+        $this->assertNull($fieldB->get('non_mirror'));
+    }
 }

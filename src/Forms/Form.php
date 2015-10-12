@@ -6,6 +6,7 @@ use Koenvu\Forms\Components\Labeller;
 use Koenvu\Forms\Components\Valuable;
 use Illuminate\Contracts\View\Factory;
 use Koenvu\Forms\Components\Elementary;
+use Koenvu\Forms\Components\Propagator;
 use Koenvu\Forms\Contracts\FormElement;
 use Illuminate\Contracts\Container\Container;
 
@@ -14,7 +15,7 @@ use Illuminate\Contracts\Container\Container;
  */
 class Form implements FormElement
 {
-    use Elementary, Valuable, Labeller;
+    use Elementary, Valuable, Labeller, Propagator;
 
     /**
      * @var Factory
@@ -34,7 +35,7 @@ class Form implements FormElement
     /**
      * @var [string]
      */
-    protected $mirrorOptions = ['template_prefix'];
+    protected $propagatorOptions = ['template_prefix'];
 
     /**
      * Create a new instance and inject a view factory
@@ -86,6 +87,9 @@ class Form implements FormElement
     {
         // Fill all fields right before the render
         $this->fillValues($this->fields);
+
+        // Propagate settings to child fields
+        $this->propagateTo($this->fields);
 
         // Render all the fields and concatenate the results
         $fieldContents = '';
