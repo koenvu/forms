@@ -42,4 +42,19 @@ class SimpleFieldTest extends PHPUnit_Framework_TestCase
 
         $field->render();
     }
+
+    public function testMirrorsNameToId()
+    {
+        $field = new SimpleField($this->factory);
+
+        $field->set('field.name', 'username');
+
+        // Render triggers the copy action
+        $field->render();
+
+        $this->assertEquals('username', $field->get('field.id'));
+
+        // Random check
+        $this->assertNull($field->get('username'));
+    }
 }

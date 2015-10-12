@@ -64,6 +64,8 @@ class ElementaryTest extends PHPUnit_Framework_TestCase
             'greet' => 'Hello'
         ]);
         $this->assertRegExp('/value\s*=\s*([\'"])SomeValue\1/', $elementary->attr('wrapper'));
+        $this->assertNotRegExp('/wrapper\.value/', $elementary->attr('wrapper'));
+        $this->assertNotRegExp('/wrapper\.value/', $elementary->attr('wrapper.value'));
         $this->assertRegExp('/greet\s*=\s*([\'"])Hello\1/', $elementary->attr('wrapper'));
     }
 }

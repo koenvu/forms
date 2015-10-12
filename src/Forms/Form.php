@@ -2,7 +2,6 @@
 
 namespace Koenvu\Forms;
 
-use Koenvu\Forms\Components\Mirror;
 use Koenvu\Forms\Components\Labeller;
 use Koenvu\Forms\Components\Valuable;
 use Illuminate\Contracts\View\Factory;
@@ -15,7 +14,7 @@ use Illuminate\Contracts\Container\Container;
  */
 class Form implements FormElement
 {
-    use Elementary, Valuable, Labeller, Mirror;
+    use Elementary, Valuable, Labeller;
 
     /**
      * @var Factory
@@ -87,12 +86,6 @@ class Form implements FormElement
     {
         // Fill all fields right before the render
         $this->fillValues($this->fields);
-
-        // Generate label tags
-        $this->enhanceLabels($this->fields, true);
-
-        // Mirror options to the fields
-        $this->mirrorOptions($this->fields);
 
         // Render all the fields and concatenate the results
         $fieldContents = '';

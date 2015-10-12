@@ -11,18 +11,25 @@ class MirrorTest extends PHPUnit_Framework_TestCase
     public function testMirroring()
     {
         $mirror = $this->getMockForAbstractClass('Koenvu\FormTests\Stubs\TestableMirror');
-        $field = $this->getMockForAbstractClass('Koenvu\FormTests\Stubs\TestableField');
 
-        $mirror->setMirrorOptions(['a', 'sub.b']);
-        $mirror->set('a', 'art');
-        $mirror->set('sub.b', 'beautiful');
-        $mirror->set('c', 'correct');
+        $mirror->setMirrorOptions([
+            'a' => 'sub.b',
+            'b' => [
+                'c',
+                'd',
+                'e'
+            ]
+        ]);
+        $mirror->set('a', 'Some value');
+        $mirror->set('b', 'Different');
+        $mirror->set('c', 'Unchanged');
 
-        $mirror->mirrorOptions([$field]);
+        $mirror->mirrorOptions();
 
-        $this->assertEquals('art', $field->get('a'));
-        $this->assertEquals('beautiful', $field->get('sub.b'));
-        $this->assertNull($field->get('c'));
+        $this->assertEquals('Some value', $mirror->get('sub.b'));
+        $this->assertEquals('Unchanged', $mirror->get('c'));
+        $this->assertEquals('Different', $mirror->get('d'));
+        $this->assertEquals('Different', $mirror->get('e'));
     }
 
     /**

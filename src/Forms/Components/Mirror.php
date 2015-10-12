@@ -15,14 +15,15 @@ use Koenvu\Forms\Components\Exceptions\MirrorException;
 trait Mirror
 {
     /**
-     * Mirror options to specified fields
+     * Mirror specified options to their destinations with this element.
      *
-     * @param [FormElement] $fields
-     * @throws Exception
+     * @throws MirrorException
      */
-    public function mirrorOptions($fields)
+    public function mirrorOptions()
     {
-        // Check if this class is an instance of FormElement
+        // Check if this class is an instance of FormElement.
+        // This is important because we are assuming that
+        // set and get methods are available for use.
         if (! ($this instanceof FormElement)) {
             throw new MirrorException(get_class($this) . " does not implement FormElement");
         }
@@ -31,16 +32,25 @@ trait Mirror
 
         // Mirror options are retrieved from the mirrorOptions property
         if (property_exists($this, "mirrorOptions")) {
-            $mirrorOptions = (array) $this->mirrorOptions;
+            $mirrorOptions = $this->mirrorOptions;
         }
 
         // Loop through the options and assign them to the fields
-        foreach ($mirrorOptions as $option) {
+        foreach ($mirrorOptions as $option => $destinations) {
+            // Cast destinations to an array. When it was a string
+            // before it will now be an array with one element,
+            // ready to be looped through and processed.
+            $destinations = (array) $destinations;
             $value = $this->get($option);
 
-            array_walk($fields, function ($field) use ($option, $value) {
-                $field->set($option, $value);
-            });
+            // Copy it to all destinations, except if the
+            // destination already has a value. In that
+            // case, we just skip the mirror action.
+            foreach ($destinations as $destination) {
+                if (! $this->has($destination)) {
+                    $this->set($destination, $value);
+                }
+            }
         }
     }
 }

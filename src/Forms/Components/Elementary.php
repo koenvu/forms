@@ -70,6 +70,10 @@ trait Elementary
         if (! is_array($value)) {
             // If the value is not an array, we will just create a single attribute
             if ($value !== null) {
+                // Get only the last portion of the option name,
+                // after the last dot. Everything else is not
+                // relevant and should not be displayed.
+                $name = end((explode(".", $name)));
                 return " {$name}=\"" . e($value) . "\"";
             }
 

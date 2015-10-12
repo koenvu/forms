@@ -90,41 +90,28 @@ class FormTest extends PHPUnit_Framework_TestCase
         $this->assertRegExp('/value\s*=\s*([\'"])a value\1/', $field->attr('field'));
     }
 
-    public function testEnhancingLabels()
-    {
-        $form = new Form($this->factory, $this->container);
-        $field = $this->getMockForAbstractClass('Koenvu\FormTests\Stubs\TestableField');
-        $field->set('field.name', 'somename');
-        $field->set('field.id', 'someid');
+    // public function testMirroringOptions()
+    // {
+    //     $form = new Form($this->factory, $this->container);
+    //     $fieldA = $this->getMockForAbstractClass('Koenvu\FormTests\Stubs\TestableField');
+    //     $fieldB = $this->getMockForAbstractClass('Koenvu\FormTests\Stubs\TestableField');
 
-        $form->addField($field);
-        $form->render();
+    //     $form->addField($fieldA);
+    //     $form->addField($fieldB);
 
-        $this->assertRegExp('/for\s*=\s*([\'"])someid\1/', $field->attr('label.for'));
-    }
+    //     // template_prefix is a mirror option in form and should be copied
+    //     $form->set('template_prefix', 'someprefix::');
 
-    public function testMirroringOptions()
-    {
-        $form = new Form($this->factory, $this->container);
-        $fieldA = $this->getMockForAbstractClass('Koenvu\FormTests\Stubs\TestableField');
-        $fieldB = $this->getMockForAbstractClass('Koenvu\FormTests\Stubs\TestableField');
+    //     // non_mirror is not a mirror option in form and should not be copied
+    //     $form->set('non_mirror', 'hello');
 
-        $form->addField($fieldA);
-        $form->addField($fieldB);
+    //     // rendering will trigger the mirror functionality
+    //     $form->render();
 
-        // template_prefix is a mirror option in form and should be copied
-        $form->set('template_prefix', 'someprefix::');
+    //     $this->assertEquals('someprefix::', $fieldA->get('template_prefix'));
+    //     $this->assertEquals('someprefix::', $fieldB->get('template_prefix'));
 
-        // non_mirror is not a mirror option in form and should not be copied
-        $form->set('non_mirror', 'hello');
-
-        // rendering will trigger the mirror functionality
-        $form->render();
-
-        $this->assertEquals('someprefix::', $fieldA->get('template_prefix'));
-        $this->assertEquals('someprefix::', $fieldB->get('template_prefix'));
-
-        $this->assertNull($fieldA->get('non_mirror'));
-        $this->assertNull($fieldB->get('non_mirror'));
-    }
+    //     $this->assertNull($fieldA->get('non_mirror'));
+    //     $this->assertNull($fieldB->get('non_mirror'));
+    // }
 }
