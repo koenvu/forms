@@ -73,7 +73,9 @@ trait Elementary
                 // Get only the last portion of the option name,
                 // after the last dot. Everything else is not
                 // relevant and should not be displayed.
-                $name = end((explode(".", $name)));
+                $optionParts = explode(".", $name);
+                $name = end($optionParts);
+
                 return " {$name}=\"" . e($value) . "\"";
             }
 
