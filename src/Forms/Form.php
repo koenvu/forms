@@ -28,7 +28,7 @@ class Form implements FormElement
     protected $container;
 
     /**
-     * @var array
+     * @var [FormElement]
      */
     protected $fields = [];
 
@@ -68,9 +68,11 @@ class Form implements FormElement
      */
     public function createField($class, $fieldOptions = [], $parameters = [])
     {
+        // Have the container return an instance of the class
         $field = $this->container->make($class, $parameters);
         $this->addField($field);
 
+        // Set all the options passed to this function
         foreach ($fieldOptions as $option => $value) {
             $field->set($option, $value);
         }
