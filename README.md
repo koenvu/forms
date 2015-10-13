@@ -6,6 +6,10 @@
 [![Latest Stable Version](https://poser.pugx.org/koenvu/forms/v/stable)](https://packagist.org/packages/koenvu/forms)
 [![License](https://poser.pugx.org/koenvu/forms/license)](https://packagist.org/packages/koenvu/forms)
 
+## Documentation
+
+Documentation is avaible (currently as a Work In Progress) over at <http://forms.readthedocs.org>
+
 ## Quick start
 
 Install through composer:
