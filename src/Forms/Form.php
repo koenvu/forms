@@ -86,11 +86,11 @@ class Form implements FormElement
     }
 
     /**
-     * Render the form and its fields.
+     * Render and return the fields.
      *
      * @return string
      */
-    public function render()
+    protected function renderFields()
     {
         // Fill all fields right before the render
         $this->fillValues($this->fields);
@@ -104,14 +104,25 @@ class Form implements FormElement
             $fieldContents .= $field->render();
         }
 
+        return $fieldContents;
+    }
+
+    /**
+     * Render the form.
+     *
+     * @return string
+     */
+    public function render()
+    {
         // Generate the view name
         $viewName = $this->get('template_prefix', '') . $this->get('template', 'form');
 
         // Make and render the form view
         $view = $this->viewFactory->make($viewName, [
-            'fields' => $fieldContents,
+            'fields' => $this->renderFields(),
             'form'   => $this
         ]);
+
         return $view->render();
     }
 }
