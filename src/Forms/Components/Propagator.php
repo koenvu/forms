@@ -13,7 +13,7 @@ trait Propagator
      * @param [FormElement] $fields
      * @throws PropagatorException
      */
-    public function propagateTo($fields)
+    public function propagateSettingsTo($fields)
     {
         // Check if this class is an instance of FormElement.
         // This is important because we are assuming that

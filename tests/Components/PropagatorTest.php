@@ -19,7 +19,7 @@ class PropagatorTest extends PHPUnit_Framework_TestCase
 
         $fieldB->set('someoption', 'unchanged');
 
-        $propagator->propagateTo([$fieldA, $fieldB]);
+        $propagator->propagateSettingsTo([$fieldA, $fieldB]);
 
         $this->assertEquals('prefix::', $fieldA->get('template_prefix'));
         $this->assertEquals('prefix::', $fieldB->get('template_prefix'));
@@ -34,6 +34,6 @@ class PropagatorTest extends PHPUnit_Framework_TestCase
     public function testThrowingException()
     {
         $propagator = $this->getMockForTrait('Koenvu\Forms\Components\Propagator');
-        $propagator->propagateTo([]);
+        $propagator->propagateSettingsTo([]);
     }
 }

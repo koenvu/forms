@@ -91,7 +91,7 @@ class Form implements FormElement
         $this->fillValues($this->fields);
 
         // Propagate settings to child fields
-        $this->propagateTo($this->fields);
+        $this->propagateSettingsTo($this->fields);
 
         // Render all the fields and concatenate the results
         $fieldContents = '';
