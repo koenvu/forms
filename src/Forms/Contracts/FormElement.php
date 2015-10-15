@@ -2,13 +2,10 @@
 
 namespace Koenvu\Forms\Contracts;
 
-/**
- * Contract for a FormElement
- */
 interface FormElement extends Element
 {
     /**
-     * Set an option
+     * Set an option.
      *
      * @param string $name
      * @param mixed $value
@@ -17,7 +14,7 @@ interface FormElement extends Element
     public function set($name, $value);
 
     /**
-     * Retrieve an option
+     * Retrieve an option.
      *
      * @param string $name
      * @param mixed $default
@@ -26,7 +23,7 @@ interface FormElement extends Element
     public function get($name, $default = null);
 
     /**
-     * Check if the element has a given option
+     * Check if the element has a given option.
      *
      * @param string $name
      */

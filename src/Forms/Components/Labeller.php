@@ -2,13 +2,10 @@
 
 namespace Koenvu\Forms\Components;
 
-/**
- * Component to automatically enhance labels for a field
- */
 trait Labeller
 {
     /**
-     * Enhance field by adding information to the label
+     * Enhance field by adding information to the label.
      *
      * @param boolean $generateIds Should fields automatically get an ID tag added if they do not exist?
      * @param callback $generatorCallback This callback will be used to generate an ID when required

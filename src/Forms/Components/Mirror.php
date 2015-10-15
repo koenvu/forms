@@ -5,13 +5,6 @@ namespace Koenvu\Forms\Components;
 use Koenvu\Forms\Contracts\FormElement;
 use Koenvu\Forms\Components\Exceptions\MirrorException;
 
-/**
- * Component that helps mirroring options from the form to its elements
- *
- * This component expects to be used on a class
- * that implements FormElement. It will throw
- * an exception if that is not the case.
- */
 trait Mirror
 {
     /**

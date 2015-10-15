@@ -23,7 +23,7 @@ class SimpleField implements FormElement
     protected $mirrorOptions = ['field.name' => 'field.id'];
 
     /**
-     * Create a new instance and inject a view factory
+     * Create a new instance and inject a view factory.
      *
      * @param Factory $viewFactory
      */
@@ -33,7 +33,7 @@ class SimpleField implements FormElement
     }
 
     /**
-     * Render the field
+     * Render the field.
      *
      * @return string
      */

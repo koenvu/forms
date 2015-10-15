@@ -7,7 +7,7 @@ trait Elementary
     protected $options;
 
     /**
-     * Set an option
+     * Set an option.
      *
      * @param string $name
      * @param mixed $value
@@ -20,7 +20,7 @@ trait Elementary
     }
 
     /**
-     * Retrieve an option
+     * Retrieve an option.
      *
      * @param string $name
      * @param mixed $default
@@ -32,7 +32,7 @@ trait Elementary
     }
 
     /**
-     * Check if the element has a given option
+     * Check if the element has a given option.
      *
      * @param string $name
      */
@@ -42,7 +42,7 @@ trait Elementary
     }
 
     /**
-     * Retrieve an option and remove it from the options array
+     * Retrieve an option and remove it from the options array.
      *
      * @param string $name
      * @param mixed $default

@@ -10,35 +10,40 @@ use Koenvu\Forms\Components\Propagator;
 use Koenvu\Forms\Contracts\FormElement;
 use Illuminate\Contracts\Container\Container;
 
-/**
- * Easy form builder based on blade templates
- */
 class Form implements FormElement
 {
     use Elementary, Valuable, Labeller, Propagator;
 
     /**
+     * The factory for rendering this form its view.
+     *
      * @var Factory
      */
     protected $viewFactory;
 
     /**
+     * The container to create fields with.
+     *
      * @var Container
      */
     protected $container;
 
     /**
+     * The array with fields.
+     *
      * @var [FormElement]
      */
     protected $fields = [];
 
     /**
+     * The settings that should be propagated to fields.
+     *
      * @var [string]
      */
     protected $propagatorOptions = ['template_prefix'];
 
     /**
-     * Create a new instance and inject a view factory
+     * Create a new instance and inject a view factory.
      *
      * @param Factory $viewFactory
      */
@@ -49,7 +54,7 @@ class Form implements FormElement
     }
 
     /**
-     * Add a new field to the form
+     * Add a new field to the form.
      *
      * @param FormField $field
      */
@@ -59,7 +64,7 @@ class Form implements FormElement
     }
 
     /**
-     * Instantiate a field and add it to the form
+     * Instantiate a field and add it to the form.
      *
      * @param string $class
      * @param array $parameters
@@ -81,7 +86,7 @@ class Form implements FormElement
     }
 
     /**
-     * Render the form and its fields
+     * Render the form and its fields.
      *
      * @return string
      */

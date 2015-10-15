@@ -2,14 +2,10 @@
 
 namespace Koenvu\Forms\Components;
 
-/**
- * Component to fill field values based on request parameters
- */
 trait Valuable
 {
-
     /**
-     * Fill the field.value option of a field
+     * Fill the field.value option of a field.
      *
      * @param [FormElement] $fields Array of FormElement objects
      */

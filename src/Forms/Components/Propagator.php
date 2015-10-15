@@ -8,7 +8,7 @@ use Koenvu\Forms\Components\Exceptions\PropagatorException;
 trait Propagator
 {
     /**
-     * Propagate specified options to fields
+     * Propagate specified options to fields.
      *
      * @param [FormElement] $fields
      * @throws PropagatorException
