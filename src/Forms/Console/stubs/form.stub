@@ -1,0 +1,16 @@
+<?php
+
+namespace DummyNamespace;
+
+use Koenvu\Forms\Form;
+
+class DummyClass extends Form
+{
+    /**
+     * Starting point for creating the field.
+     */
+    public function init()
+    {
+        //
+    }
+}
