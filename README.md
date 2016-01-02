@@ -8,7 +8,7 @@
 
 ## Documentation
 
-Documentation is avaible (currently as a Work In Progress) over at <http://forms.readthedocs.org>
+Documentation is available (currently as a Work In Progress) over at <http://forms.readthedocs.org>
 
 ## Quick start
 
